@@ -8,12 +8,17 @@
 // Because nums[0] + nums[1] = 2 + 7 = 9,
 // return [0, 1].
 
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        hashmap = {}
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        complementMap = dict()
         for i in range(len(nums)):
-            hashmap[nums[i]] = i
-        for i in range(len(nums)):
-            complement = target - nums[i]
-            if complement in hashmap and hashmap[complement] != i:
-                return [i, hashmap[complement]] 
+            c = target - nums[i]
+            if nums[i] in complementMap:
+                return [complementMap[nums[i]], i]
+            else:
+                complementMap[c] = i
